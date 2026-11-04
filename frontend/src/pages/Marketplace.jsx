@@ -5,18 +5,18 @@ import { userService } from '../services/userService';
 import { Search, MapPin, Star, ShoppingCart, ArrowRight, Truck, Clock, Leaf, Circle, Flower2, TreePine, Utensils } from 'lucide-react';
 
 const categories = [
-  { id: 1, name: 'Vegetables', gradient: 'from-green-500 to-emerald-600', icon: Leaf, count: 45 },
-  { id: 2, name: 'Fruits', gradient: 'from-orange-500 to-red-600', icon: Circle, count: 32 },
-  { id: 3, name: 'Leafy Greens', gradient: 'from-emerald-500 to-teal-600', icon: TreePine, count: 28 },
-  { id: 4, name: 'Root Vegetables', gradient: 'from-amber-500 to-orange-600', icon: Utensils, count: 18 },
-  { id: 5, name: 'Herbs', gradient: 'from-lime-500 to-green-600', icon: Flower2, count: 15 },
-  { id: 6, name: 'Tubers', gradient: 'from-yellow-500 to-amber-600', icon: Circle, count: 12 },
+  { id: 1, name: 'Vegetables', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop', gradient: 'from-green-500 to-emerald-600', count: 45 },
+  { id: 2, name: 'Fruits', image: 'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=400&h=300&fit=crop', gradient: 'from-orange-500 to-red-600', count: 32 },
+  { id: 3, name: 'Leafy Greens', image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&h=300&fit=crop', gradient: 'from-emerald-500 to-teal-600', count: 28 },
+  { id: 4, name: 'Root Vegetables', image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&h=300&fit=crop', gradient: 'from-amber-500 to-orange-600', count: 18 },
+  { id: 5, name: 'Herbs', image: 'https://images.unsplash.com/photo-1599598345917-47b5e3591e1a?w=400&h=300&fit=crop', gradient: 'from-lime-500 to-green-600', count: 15 },
+  { id: 6, name: 'Tubers', image: 'https://images.unsplash.com/photo-1596097635121-14b63b7a0d44?w=400&h=300&fit=crop', gradient: 'from-yellow-500 to-amber-600', count: 12 },
 ];
 
 const deals = [
-  { id: 1, title: 'Fresh Tomatoes', discount: '30% OFF', originalPrice: 120, newPrice: 84, gradient: 'from-red-500 to-red-600', icon: Circle, expiry: '2 days' },
-  { id: 2, title: 'Organic Spinach', discount: '25% OFF', originalPrice: 50, newPrice: 38, gradient: 'from-green-500 to-emerald-600', icon: Leaf, expiry: '1 day' },
-  { id: 3, title: 'Sweet Potatoes', discount: '20% OFF', originalPrice: 80, newPrice: 64, gradient: 'from-orange-500 to-amber-600', icon: Circle, expiry: '3 days' },
+  { id: 1, title: 'Fresh Tomatoes', discount: '30% OFF', originalPrice: 120, newPrice: 84, image: 'https://images.unsplash.com/photo-1546470427-227c7369a9b5?w=400&h=300&fit=crop', gradient: 'from-red-500 to-red-600', expiry: '2 days' },
+  { id: 2, title: 'Organic Spinach', discount: '25% OFF', originalPrice: 50, newPrice: 38, image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&h=300&fit=crop', gradient: 'from-green-500 to-emerald-600', expiry: '1 day' },
+  { id: 3, title: 'Sweet Potatoes', discount: '20% OFF', originalPrice: 80, newPrice: 64, image: 'https://images.unsplash.com/photo-1596097635121-14b63b7a0d44?w=400&h=300&fit=crop', gradient: 'from-orange-500 to-amber-600', expiry: '3 days' },
 ];
 
 const Marketplace = () => {
@@ -95,9 +95,9 @@ const Marketplace = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-primary-600 via-primary-700 to-green-800 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-30">
           <img
-            src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=1920&h=600&fit=crop"
+            src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1920&h=800&fit=crop"
             alt="Fresh vegetables"
             className="w-full h-full object-cover"
           />
@@ -168,25 +168,28 @@ const Marketplace = () => {
             </Link>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {categories.map(category => {
-              const IconComponent = category.icon;
-              return (
-                <Link
-                  key={category.id}
-                  to={`/category/${category.id}`}
-                  className={`group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition cursor-pointer bg-gradient-to-br ${category.gradient}`}
-                >
-                  <div className="w-full h-40 flex items-center justify-center group-hover:scale-110 transition duration-300">
-                    <IconComponent className="h-20 w-20 text-white" />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="text-white font-semibold text-lg">{category.name}</h3>
-                    <p className="text-white/80 text-sm">{category.count} items</p>
-                  </div>
-                </Link>
-              );
-            })}
+            {categories.map(category => (
+              <Link
+                key={category.id}
+                to={`/category/${category.id}`}
+                className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition cursor-pointer"
+              >
+                <img
+                  src={category.image}
+                  alt={category.name}
+                  className="w-full h-40 object-cover group-hover:scale-110 transition duration-300"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.parentElement.className = `group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition cursor-pointer bg-gradient-to-br ${category.gradient}`;
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-4">
+                  <h3 className="text-white font-semibold text-lg">{category.name}</h3>
+                  <p className="text-white/80 text-sm">{category.count} items</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
 
@@ -199,32 +202,37 @@ const Marketplace = () => {
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {deals.map(deal => {
-              const IconComponent = deal.icon;
-              return (
-                <div key={deal.id} className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden group">
-                  <div className={`relative h-48 bg-gradient-to-br ${deal.gradient} flex items-center justify-center`}>
-                    <IconComponent className="h-24 w-24 text-white group-hover:scale-105 transition duration-300" />
-                    <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full font-bold text-sm">
-                      {deal.discount}
-                    </div>
-                    <div className="absolute top-4 right-4 bg-white/90 text-gray-700 px-3 py-1 rounded-full text-xs font-medium">
-                      Ends in {deal.expiry}
-                    </div>
+            {deals.map(deal => (
+              <div key={deal.id} className="bg-white rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden group">
+                <div className="relative h-48">
+                  <img
+                    src={deal.image}
+                    alt={deal.title}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition duration-300"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.parentElement.className = `relative h-48 bg-gradient-to-br ${deal.gradient} flex items-center justify-center`;
+                    }}
+                  />
+                  <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full font-bold text-sm">
+                    {deal.discount}
                   </div>
-                  <div className="p-5">
-                    <h3 className="font-semibold text-gray-900 text-lg mb-2">{deal.title}</h3>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-2xl font-bold text-primary-600">KSh {deal.newPrice}</span>
-                      <span className="text-gray-400 line-through">KSh {deal.originalPrice}</span>
-                    </div>
-                    <button className="mt-4 w-full bg-primary-600 text-white py-3 rounded-xl font-medium hover:bg-primary-700 transition">
-                      Add to Cart
-                    </button>
+                  <div className="absolute top-4 right-4 bg-white/90 text-gray-700 px-3 py-1 rounded-full text-xs font-medium">
+                    Ends in {deal.expiry}
                   </div>
                 </div>
-              );
-            })}
+                <div className="p-5">
+                  <h3 className="font-semibold text-gray-900 text-lg mb-2">{deal.title}</h3>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-2xl font-bold text-primary-600">KSh {deal.newPrice}</span>
+                    <span className="text-gray-400 line-through">KSh {deal.originalPrice}</span>
+                  </div>
+                  <button className="mt-4 w-full bg-primary-600 text-white py-3 rounded-xl font-medium hover:bg-primary-700 transition">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

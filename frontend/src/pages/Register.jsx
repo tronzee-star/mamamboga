@@ -44,6 +44,8 @@ const Register = () => {
       // Redirect based on role
       if (formData.role === 'vendor') {
         navigate('/vendor/dashboard');
+      } else if (formData.role === 'buyer') {
+        navigate('/orders');
       } else {
         navigate('/');
       }

@@ -35,6 +35,8 @@ const Login = () => {
         navigate('/vendor/dashboard');
       } else if (user.role === 'admin') {
         navigate('/admin/dashboard');
+      } else if (user.role === 'buyer') {
+        navigate('/orders');
       } else {
         navigate('/');
       }

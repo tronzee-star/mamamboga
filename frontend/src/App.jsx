@@ -26,6 +26,24 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   return children;
 };
 
+const DashboardRedirect = () => {
+  const { user, isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  if (user?.role === 'vendor') {
+    return <Navigate to="/vendor/dashboard" />;
+  } else if (user?.role === 'admin') {
+    return <Navigate to="/admin/dashboard" />;
+  } else if (user?.role === 'buyer') {
+    return <Navigate to="/orders" />;
+  }
+
+  return <Navigate to="/" />;
+};
+
 function App() {
   return (
     <AuthProvider>
@@ -35,6 +53,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Marketplace />} />
+          <Route path="/dashboard" element={<DashboardRedirect />} />
           <Route
             path="/vendor/dashboard"
             element={
